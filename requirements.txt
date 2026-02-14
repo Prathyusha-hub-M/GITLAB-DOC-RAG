@@ -1,0 +1,14 @@
+chromadb
+sentence-transformers
+fastapi
+uvicorn
+rank-bm25
+python-dotenv
+tqdm
+markdown-it-py
+PyYAML
+langchain
+langchain-community
+langchain_text_splitters
+langchain_core
+pydantic
