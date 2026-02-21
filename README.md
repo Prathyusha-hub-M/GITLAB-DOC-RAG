@@ -5,14 +5,30 @@ End-to-end Retrieval-Augmented Generation system built on enterprise documentati
 ---
 
 ## Problem
+Enterprise documentation systems are large, complex, and constantly evolving. Traditional search methods often fail because:
 
-Basic RAG systems fail in production due to:
+* Keyword search misses semantically relevant content
 
-* Low recall from pure dense retrieval
-* Poor precision without reranking
-* Lack of evaluation
-* No observability into retrieval or generation failures
-* Script-based implementations with no deployment layer
+* Pure vector search may ignore exact policy language
+
+* Retrieval systems lack ranking refinement
+
+* LLM-based answers can hallucinate without grounding
+
+
+Organizations need a system that:
+
+* Retrieves accurate and relevant information
+
+* Minimizes hallucination
+
+* Provides traceable sources
+
+* Is observable and measurable
+
+* Can be deployed as a real API service
+
+This project builds a production-style Retrieval-Augmented Generation system over GitLab handbook documentation that addresses these gaps using hybrid retrieval, cross-encoder reranking, evaluation metrics, and observability tooling.
 
 
 ---
