@@ -1,11 +1,14 @@
 from __future__ import annotations
 
+
 from pathlib import Path
 from typing import List, Dict
 
 import chromadb
 from chromadb.config import  Settings
 from sentence_transformers import SentenceTransformer
+
+from langsmith import traceable
 
 class DenseRetriever:
     def __init__(self, collection,
@@ -14,7 +17,7 @@ class DenseRetriever:
         self.collection = collection
 
         self.model = SentenceTransformer(embedding_model)
-
+    @traceable(name="dense_retrieve")
     def retrieve(self, query: str, top_k:int = 4)-> List[Dict]:
         query_embeddings = self.model.encode(query).tolist()
 
@@ -33,13 +36,13 @@ class DenseRetriever:
 
         for doc_id, doc, meta, distance in zip(ids,documents,metadatas,distances):
 
-            # similarity_score = 1-distance
+            similarity_score = 1-distance
 
             retrieved.append({
                 "id":doc_id,
                 "text":doc,
                 "metadata":meta,
-                "score":distance
+                "score":similarity_score
             }
             )
 

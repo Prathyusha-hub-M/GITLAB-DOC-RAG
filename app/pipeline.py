@@ -1,3 +1,6 @@
+from langsmith import traceable
+from dotenv import load_dotenv
+
 from pathlib import Path
 import chromadb
 
@@ -5,7 +8,9 @@ from app.retrieval.dense import DenseRetriever
 from app.retrieval.bm25 import BM25Retriever
 from app.retrieval.hybrid import HybridRetriever
 from app.retrieval.reranker import CrossEncoderReranker
-from app.generation.qa_local import LocalQAGenerator
+from app.generation.qa_generator import LocalQAGenerator
+
+load_dotenv()
 
 CHROMA_PATH = Path("data/chroma")
 COLLECTION_NAME = "gitlab_handbook_mvp"
@@ -44,6 +49,7 @@ generator = LocalQAGenerator()
 
 # Main Pipeline #
 
+@traceable(name="run_rag_pipeline")
 def run_rag_pipeline(query: str) -> dict:
 
     # Hybrid Retrieval

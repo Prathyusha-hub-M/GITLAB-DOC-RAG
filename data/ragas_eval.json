@@ -1,0 +1,13 @@
+[
+    {
+        "question":"What is GitLab's incident escalation process?"
+    },
+
+    {
+        "question":"How should a security incident be reported?"
+    },
+    
+    {
+        "question":"What is the lifecycle of a vulnerability at GitLab?"
+    }
+]

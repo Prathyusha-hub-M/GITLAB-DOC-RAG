@@ -1,6 +1,9 @@
 from __future__ import annotations
 
+
 from typing import List, Dict
+
+
 
 class HybridRetriever:
     def __init__(self, dense_retriever, bm25_retriever, k: int = 60):
