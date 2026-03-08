@@ -1,6 +1,8 @@
 from langsmith import traceable
 from dotenv import load_dotenv
 
+from app.generation.llm_factory import create_llm
+
 from pathlib import Path
 import chromadb
 
@@ -8,7 +10,7 @@ from app.retrieval.dense import DenseRetriever
 from app.retrieval.bm25 import BM25Retriever
 from app.retrieval.hybrid import HybridRetriever
 from app.retrieval.reranker import CrossEncoderReranker
-from app.generation.qa_generator import LocalQAGenerator
+from app.generation.qa_generator import QAGenerator
 
 load_dotenv()
 
@@ -44,7 +46,8 @@ hybrid = HybridRetriever(
 
 reranker = CrossEncoderReranker()
 
-generator = LocalQAGenerator()
+llm=create_llm()
+generator = QAGenerator(llm)
 
 
 # Main Pipeline #
