@@ -1,0 +1,9 @@
+# from app.generation.qa_local import LocalQAGenerator
+
+# qa= LocalQAGenerator()
+
+
+# contexts = [r["text"]for r in final_results]
+
+# answer = qa.generate(query, contexts)print("\nFinal Answer:\n")
+# print(answer)
