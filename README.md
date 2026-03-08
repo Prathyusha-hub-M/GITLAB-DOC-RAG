@@ -86,7 +86,7 @@ The UI communicates directly with the **FastAPI RAG backend**.
 
 ### Answer + Sources
 
-![Streamlit Results](screenshots/streamlit_ans_sources.png)
+![Streamlit Results](assets/streamlit_ans_sources.png)
 
 ---
 
@@ -96,22 +96,19 @@ Start the API first:
 
 ```bash
 uvicorn app.api:app --reload
-
+```
 Then launch the UI:
-
 ```bash
 streamlit run streamlit_app.py
-
+```
 Open in your browser:
-
 ```bash
 http://localhost:8501
-
+```
 The UI sends requests to the backend endpoint:
-
 ```bash
 POST /query
-
+```
 
 
 Observability:
