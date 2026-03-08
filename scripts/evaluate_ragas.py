@@ -1,13 +1,15 @@
 import json
 from datasets import Dataset
+from dotenv import load_dotenv
 
 from ragas import evaluate
 from ragas.metrics import _faithfulness, _answer_relevancy, _context_precision
 
-from langchain_community.chat_models import ChatHuggingFace
-from langchain_community.llms import HuggingFaceHub
+from langchain_openai import ChatOpenAI
 
 from app.pipeline import run_rag_pipeline
+
+load_dotenv()
 
 with open("data/ragas_eval.json", "r") as f:
     questions = json.load(f)
@@ -27,10 +29,11 @@ for item in questions:
 
 dataset = Dataset.from_list(records)
 
-llm = HuggingFaceHub(repo_id="HuggingFaceH4/zephyr-7b-beta",
-                          model_kwargs={"temperature":0})
-    
-evaluator_llm = ChatHuggingFace(llm=llm)
+llm = ChatOpenAI(
+      model="gpt-4o-mini",
+      temperature = 0
+      )
+
 
 results = evaluate(
         dataset,
@@ -39,7 +42,7 @@ results = evaluate(
             _answer_relevancy,
             _context_precision
         ],
-        llm= evaluator_llm
+        llm=llm
     )
 
 
